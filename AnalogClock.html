@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analog Clock</title>
+</head>
+<body >
+  <h1>Analog clock</h1>
+  <div class="circle">
+    <div class="miniCircle">
+<div class="hand second-hand"></div>
+<div class="hand minute-hand"></div>
+<div class="hand hour-hand"></div>
+    </div>
+  </div>
+  <script>
+    function setTime(){
+      var now = new Date();
+      var second = now.getSeconds();
+      var minute = now.getMinutes();
+      var hour = now.getHours();
+
+      var secondsHand = document.querySelector(`.second-hand`);
+      var secondDegrees = ((second/60)*360) + 90 ;
+      secondsHand.style.transform = `rotate(${secondDegrees}deg)`;
+
+      var minutesHand = document.querySelector(`.minute-hand`);
+      var minutesDegrees = ((minute / 60) * 360) + ((second / 60) * 6) + 90;
+      minutesHand.style.transform = `rotate(${minutesDegrees}deg)`;
+      
+      
+      var hoursHand = document.querySelector(`.hour-hand`);
+      var hoursDegrees = ((hour / 60) * 360) + ((minute / 60) * 30) + 90;
+      hoursHand.style.transform = `rotate(${hoursDegrees}deg)`;
+      setInterval(setTime ,1000);
+    }
+    setTime();
+  </script>
+  <style>
+    body{
+      position: relative;
+    }
+    h1{
+      font-size: 100px;
+      position: absolute;
+      top: -15%;
+    }
+    .circle{
+      height: 700px;
+      width: 700px;
+      border-radius: 50%;
+      background-color: blueviolet;
+      margin: 50px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+box-shadow: 1px 1px 5px 5px;
+transition: .3s linear;
+
+    }
+    .miniCircle{
+      height: 500px;
+width: 500px;
+background-color: beige;
+border-radius: 50%;
+box-shadow: 1px 1px 5px 5px;
+position: relative;
+padding: 30px;
+transition: .3s linear;
+    }
+    .hand{
+      height: 10px;
+      width: 40%;
+      background-color: blue;
+      position: absolute;
+      top: 50%;
+      border-radius: 20px;
+      transform-origin: 100%;
+      left: 35px;
+transition: 0.15s linear;
+transform: rotate(90deg);
+    }
+    .second-hand{
+      background-color: salmon;
+    }
+    
+    .hour-hand{
+      background-color: dodgerblue;
+    }
+  </style>
+</body>
+</html>
