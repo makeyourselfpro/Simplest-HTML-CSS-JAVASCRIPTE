@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div class="time" id="myDiv" onload="showTime()"></div>
+  
+  <style>
+    div{
+      padding: 100px;
+      border: 1px solid black;
+      margin: 300px auto;
+      width: 200px;
+      font-size: 50px;
+    }
+  </style>
+
+  <script>
+    function showTime(){
+var nowTime = new Date();
+var h = nowTime.getHours();
+var m = nowTime.getMinutes();
+      var s = nowTime.getSeconds();
+      var session = "AM";
+
+      if ( h == 0){ h = 12};
+
+      if (h > 12){ h = h - 12 ; session = "PM";}
+
+      h = (h< 10) ? "0" + h  : h ;
+      m = (m< 10) ? "0" + m  : m ;
+      s = (s < 10) ? "0" + s : s;
+
+      var time = h + ":" + m + ":" + s + session;
+      document.getElementById("myDiv").innerHTML = time;
+      document.getElementById("myDiv").textContent = time;
+      setTimeout(showTime ,1000);
+    }
+    showTime();
+  </script>
+</body>
+</html>
